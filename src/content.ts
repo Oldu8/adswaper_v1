@@ -1,3 +1,5 @@
+/// <reference types="chrome"/>
+
 document.addEventListener("DOMContentLoaded", function () {
   // Function to replace ads with a default image
   function replaceAds() {
@@ -9,5 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  replaceAds();
+  chrome.storage.sync.get(["enabled"], (result) => {
+    if (result.enabled) {
+      replaceAds();
+    }
+  });
 });
